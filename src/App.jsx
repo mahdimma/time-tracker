@@ -1,24 +1,67 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import { FaClock, FaChartPie } from "react-icons/fa";
 import Timer from "./components/Timer";
 import ChartPage from "./components/ChartPage";
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
-        <nav className="bg-blue-600 p-4 text-white">
-          <Link to="/" className="mr-4 hover:underline">
-            Timer
-          </Link>
-          <Link to="/chart" className="hover:underline">
-            Pie Chart
-          </Link>
+      <div className="flex flex-col min-h-screen bg-gray-100">
+        {/* Navigation Bar */}
+        <nav className="bg-gradient-to-r from-blue-500 to-blue-700 p-4 text-white shadow-md">
+          <div className="flex justify-around max-w-2xl mx-auto">
+            <NavLink
+              to="/"
+              className="flex items-center px-4 py-2 hover:bg-blue-800 rounded-md transition-colors duration-200"
+              activeClassName="border-b-2 border-white"
+            >
+              <FaClock className="mr-2" /> Timer
+            </NavLink>
+            <NavLink
+              to="/chart"
+              className="flex items-center px-4 py-2 hover:bg-blue-800 rounded-md transition-colors duration-200"
+              activeClassName="border-b-2 border-white"
+            >
+              <FaChartPie className="mr-2" /> Pie Chart
+            </NavLink>
+          </div>
         </nav>
-        <div className="p-4">
+
+        {/* Main Content */}
+        <div className="flex-grow p-4">
           <Routes>
-            <Route path="/" element={<Timer />} />
-            <Route path="/chart" element={<ChartPage />} />
+            <Route
+              path="/"
+              element={
+                <div className="flex flex-col items-center justify-center h-full">
+                  <h1 className="text-3xl font-bold text-gray-800 mb-6">
+                    Timer
+                  </h1>
+                  <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                    <Timer />
+                  </div>
+                </div>
+              }
+            />
+            <Route
+              path="/chart"
+              element={
+                <div className="flex flex-col items-center justify-center h-full">
+                  <h1 className="text-3xl font-bold text-gray-800 mb-6">
+                    Pie Chart
+                  </h1>
+                  <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                    <ChartPage />
+                  </div>
+                </div>
+              }
+            />
           </Routes>
         </div>
       </div>
