@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  getSessions,
-  saveSession,
-  removeSession,
-  clearSessions,
-} from "../utils/localStorage";
+import { getSessions, saveSession, removeSession, clearSessions } from "../utils/localStorage";
 
 function Timer() {
   const [isRunning, setIsRunning] = useState(false);
@@ -141,13 +136,7 @@ function TimerControls({ isRunning, elapsedTime, startTime, onStartStop }) {
 }
 
 // Component for the session input form
-function SessionForm({
-  sessionName,
-  setSessionName,
-  sessionColor,
-  setSessionColor,
-  onSubmit,
-}) {
+function SessionForm({ sessionName, setSessionName, sessionColor, setSessionColor, onSubmit }) {
   return (
     <form onSubmit={onSubmit} className="mb-4">
       <div className="mb-2">
@@ -193,34 +182,30 @@ function SessionList({ sessions, onDelete, onClearAll }) {
         <p>No sessions recorded yet.</p>
       ) : (
         <ul className="space-y-2">
-          {sessions
-            .slice()
-            .reverse()
-            .map((session) => (
-              <li
-                key={session.id}
-                className="border p-2 rounded flex justify-between items-center"
-              >
-                <div>
-                  <div className="font-bold">{session.name}</div>
-                  <div className="text-sm text-gray-600">
-                    {new Date(session.startTime).toLocaleString()} -{" "}
-                    {new Date(session.endTime).toLocaleString()} (
-                    {session.duration} min)
-                  </div>
+          {sessions.slice().reverse().map((session) => (
+            <li
+              key={session.id}
+              className="border p-2 rounded flex justify-between items-center"
+            >
+              <div>
+                <div className="font-bold">{session.name}</div>
+                <div className="text-sm text-gray-600">
+                  {new Date(session.startTime).toLocaleString()} -{" "}
+                  {new Date(session.endTime).toLocaleString()} ({session.duration} min)
                 </div>
-                <div
-                  style={{ backgroundColor: session.color }}
-                  className="w-6 h-6 rounded"
-                />
-                <button
-                  onClick={() => onDelete(session.id)}
-                  className="ml-2 text-red-500"
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
+              </div>
+              <div
+                style={{ backgroundColor: session.color }}
+                className="w-6 h-6 rounded"
+              />
+              <button
+                onClick={() => onDelete(session.id)}
+                className="ml-2 text-red-500"
+              >
+                Delete
+              </button>
+            </li>
+          ))}
         </ul>
       )}
     </div>
