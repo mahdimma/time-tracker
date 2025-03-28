@@ -34,16 +34,16 @@ function App() {
         </nav>
 
         {/* Main Content */}
-        <div className="flex-grow p-4">
+        <div className="flex-grow p-4 sm:p-6">
           <Routes>
             <Route
               path="/"
               element={
                 <div className="flex flex-col items-center justify-center h-full">
-                  <h1 className="text-3xl font-bold text-gray-800 mb-6">
-                    Timer
-                  </h1>
-                  <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 w-full max-w-md">
+                    <h1 className="text-3xl font-bold text-blue-700 mb-6">
+                      Timer
+                    </h1>
                     <Timer />
                   </div>
                 </div>
@@ -53,10 +53,10 @@ function App() {
               path="/chart"
               element={
                 <div className="flex flex-col items-center justify-center h-full">
-                  <h1 className="text-3xl font-bold text-gray-800 mb-6">
-                    Pie Chart
-                  </h1>
-                  <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 w-full max-w-md">
+                    <h1 className="text-3xl font-bold text-blue-700 mb-6">
+                      Pie Chart
+                    </h1>
                     <ChartPage />
                   </div>
                 </div>
@@ -65,7 +65,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router>
+    </Router> 
   );
 }
 
