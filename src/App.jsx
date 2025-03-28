@@ -55,7 +55,7 @@ function App() {
                 <div className="flex flex-col items-center justify-center h-full">
                   <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 w-full max-w-md">
                     <h1 className="text-3xl font-bold text-blue-700 mb-6">
-                      Pie Chart
+                      Clock Chart
                     </h1>
                     <ChartPage />
                   </div>
@@ -65,7 +65,7 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router> 
+    </Router>
   );
 }
 
