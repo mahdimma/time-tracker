@@ -322,18 +322,25 @@ function ChartPage() {
           </svg>
         </div>
 
-        {transformedSessions.length === 0 && <p>اطلاعات جلسه موجود نیست.</p>}
-        {transformedSessions.length > 0 && (
+        {transformedSessions.length === 0 ? (
+          <p>اطلاعات جلسه موجود نیست.</p>
+        ) : (
           <ul className="mt-4">
-            {transformedSessions.map((session, index) => (
-              <li key={index} className="flex items-center space-x-2">
-                <div
-                  className="w-4 h-4 rounded-full"
-                  style={{ backgroundColor: session.color }}
-                ></div>
-                <span>{session.name}</span>
-              </li>
-            ))}
+            {transformedSessions
+              .filter((session) => {
+                const startTime = new Date(session.startTime);
+                const hour = startTime.getHours();
+                return hour < 12;
+              })
+              .map((session, index) => (
+                <li key={index} className="flex items-center space-x-2">
+                  <div
+                    className="w-4 h-4 rounded-full"
+                    style={{ backgroundColor: session.color }}
+                  ></div>
+                  <span>{session.name}</span>
+                </li>
+              ))}
           </ul>
         )}
 
@@ -406,18 +413,25 @@ function ChartPage() {
         </div>
       </div>
 
-      {transformedSessions.length === 0 && <p>اطلاعات جلسه موجود نیست.</p>}
-      {transformedSessions.length > 0 && (
+      {transformedSessions.length === 0 ? (
+        <p>اطلاعات جلسه موجود نیست.</p>
+      ) : (
         <ul className="mt-4">
-          {transformedSessions.map((session, index) => (
-            <li key={index} className="flex items-center space-x-2">
-              <div
-                className="w-4 h-4 rounded-full"
-                style={{ backgroundColor: session.color }}
-              ></div>
-              <span>{session.name}</span>
-            </li>
-          ))}
+          {transformedSessions
+            .filter((session) => {
+              const startTime = new Date(session.startTime);
+              const hour = startTime.getHours();
+              return hour >= 12;
+            })
+            .map((session, index) => (
+              <li key={index} className="flex items-center space-x-2">
+                <div
+                  className="w-4 h-4 rounded-full"
+                  style={{ backgroundColor: session.color }}
+                ></div>
+                <span>{session.name}</span>
+              </li>
+            ))}
         </ul>
       )}
     </div>
