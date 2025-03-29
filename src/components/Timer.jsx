@@ -5,6 +5,7 @@ import {
   removeSession,
   clearSessions,
 } from "../utils/localStorage";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 function Timer() {
   const [isTracking, setIsTracking] = useState(false); // وضعیت جدید برای پیگیری شروع زمان
@@ -13,6 +14,7 @@ function Timer() {
   const [sessionName, setSessionName] = useState("");
   const [sessionColor, setSessionColor] = useState("#FF5733");
   const [sessions, setSessions] = useState([]);
+  const { t } = useTranslation(); // Get the t function
 
   const START_TIME_KEY = "timerStartTime";
   const IS_TRACKING_KEY = "timerIsTracking";
@@ -98,7 +100,7 @@ function Timer() {
 
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Static Timer App</h1>
+      <h1 className="text-2xl font-bold mb-4">{t("Static Timer App")}</h1>
       <TimerControls
         isTracking={isTracking}
         startTime={startTime}
@@ -124,6 +126,8 @@ function Timer() {
 
 // Component for timer controls and display
 function TimerControls({ isTracking, startTime, onStartStop }) {
+  const { t } = useTranslation(); // Get the t function
+
   return (
     <div>
       <button
@@ -140,7 +144,7 @@ function TimerControls({ isTracking, startTime, onStartStop }) {
             Timer started at {new Date(startTime).toLocaleTimeString()}
           </div>
         ) : (
-          <div className="text-xl">Timer not running</div>
+          <div className="text-xl">{t("Timer not running")}</div>
         )}
       </div>
     </div>
@@ -155,6 +159,8 @@ function SessionForm({
   setSessionColor,
   onSubmit,
 }) {
+  const { t } = useTranslation(); // Get the t function
+
   const suggestedColors = [
     "#FF5733",
     "#3498DB",
@@ -171,7 +177,7 @@ function SessionForm({
   return (
     <form onSubmit={onSubmit} className="mb-4">
       <div className="mb-2">
-        <label className="block mb-1">Session Name</label>
+        <label className="block mb-1">{t("Session Name")}</label>
         <input
           type="text"
           value={sessionName}
@@ -181,7 +187,7 @@ function SessionForm({
         />
       </div>
       <div className="mb-2">
-        <label className="block mb-1">Session Color</label>
+        <label className="block mb-1">{t("Session Color")}</label>
         <div className="flex gap-2 mb-2">
           {suggestedColors.map((color) => (
             <div
@@ -217,16 +223,18 @@ function SessionForm({
 
 // Component for displaying and managing the session list
 function SessionList({ sessions, onDelete, onClearAll }) {
+  const { t } = useTranslation(); // Get the t function
+
   return (
     <div>
-      <h2 className="text-xl font-bold mb-2">Past Sessions</h2>
+      <h2 className="text-xl font-bold mb-2">{t("Past Sessions")}</h2>
       {sessions.length > 0 && (
         <button onClick={onClearAll} className="mb-2 text-red-500">
-          Clear All Sessions
+          {t("Clear All Sessions")}
         </button>
       )}
       {sessions.length === 0 ? (
-        <p>No sessions recorded yet.</p>
+        <p>{t("No sessions recorded yet.")}</p>
       ) : (
         <ul className="space-y-2">
           {sessions
@@ -242,7 +250,7 @@ function SessionList({ sessions, onDelete, onClearAll }) {
                   <div className="text-sm text-gray-600">
                     {new Date(session.startTime).toLocaleString()} -{" "}
                     {new Date(session.endTime).toLocaleString()} (
-                    {session.duration} min)
+                    {session.duration} {t("min")})
                   </div>
                 </div>
                 <div
@@ -253,7 +261,7 @@ function SessionList({ sessions, onDelete, onClearAll }) {
                   onClick={() => onDelete(session.id)}
                   className="ml-2 text-red-500"
                 >
-                  Delete
+                  {t("Delete")}
                 </button>
               </li>
             ))}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getSessions } from "../utils/localStorage";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 function polarToCartesian(centerX, centerY, radius, angle) {
   return {
@@ -44,6 +45,7 @@ function ChartPage() {
   const [transformedSessions, setTransformedSessions] = useState([]);
   const [firstHalfSessions, setFirstHalfSessions] = useState([]);
   const [secondHalfSessions, setSecondHalfSessions] = useState([]);
+  const { t } = useTranslation(); // Get the t function
 
   const chartRadius = 100; // کاهش شعاع برای جا شدن دو نمودار
   const centerX = 150;
@@ -174,7 +176,7 @@ function ChartPage() {
 
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">نمودار فعالیت‌های ۲۴ ساعته</h1>
+      <h1 className="text-2xl font-bold mb-4">{t("24-Hour Activity Chart")}</h1>
       <svg width={300} height={300}>
         <circle cx={150} cy={150} r={chartRadius + 20} fill="#f0f0f0" />
         {transformedSessions.map((session, index) => {
@@ -238,7 +240,9 @@ function ChartPage() {
         })}
       </svg>
 
-      {transformedSessions.length === 0 && <p>اطلاعات جلسه موجود نیست.</p>}
+      {transformedSessions.length === 0 && (
+        <p>{t("No session information available.")}</p>
+      )}
       {transformedSessions.length > 0 && (
         <ul className="mt-4">
           {transformedSessions.map((session, index) => (
@@ -256,7 +260,7 @@ function ChartPage() {
       <div className="flex justify-around flex-col mt-8">
         {/* نمودار 12 ساعته اول */}
         <div>
-          <h2 className="text-lg font-bold mb-2">00:00 - 12:00</h2>
+          <h2 className="text-lg font-bold mb-2">{t("00:00 - 12:00")}</h2>
           <svg width={300} height={300}>
             <circle cx={150} cy={150} r={chartRadius} fill="#f0f0f0" />
             {firstHalfSessions.map((session, index) => {
@@ -346,7 +350,7 @@ function ChartPage() {
 
         {/* نمودار 12 ساعته دوم */}
         <div>
-          <h2 className="text-lg font-bold mb-2">12:00 - 24:00</h2>
+          <h2 className="text-lg font-bold mb-2">{t("12:00 - 24:00")}</h2>
           <svg width={300} height={300}>
             <circle cx={150} cy={150} r={chartRadius} fill="#f0f0f0" />
             {secondHalfSessions.map((session, index) => {
