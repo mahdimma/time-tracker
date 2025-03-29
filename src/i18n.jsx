@@ -12,7 +12,7 @@ i18n
     debug: true,
 
     backend: {
-      loadPath: "../locales/{{lng}}/{{ns}}.json",
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
 
     detection: {
@@ -24,7 +24,7 @@ i18n
       escapeValue: false,
     },
 
-    ns: ["translation"],
+    ns: ["  "],
     defaultNS: "translation",
     preload: ["en", "fa"],
   });
