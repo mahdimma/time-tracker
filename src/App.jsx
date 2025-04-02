@@ -1,53 +1,43 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
-import Timer from "./components/Timer";
-import ChartPage from "./components/ChartPage";
-import Nav from "./components/nav";
-import { useTranslation } from "react-i18next"; // Import useTranslation
+// src/App.js
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import TimerPage from "./pages/TimerPage"; // Renamed for clarity
+import ChartPage from "./pages/ChartPage"; // Renamed for clarity
+import Layout from "./components/Layout";
+// Removed Nav import, as it's in Layout
+// Removed useTranslation, as it's not directly needed here anymore
 
 function App() {
-  const { t } = useTranslation(); // Get the t function
+  const { i18n } = useTranslation();
+  // Effect to update the document's direction based on the current language
+  useEffect(() => {
+    const currentLang = i18n.language;
+    const direction = currentLang === "fa" ? "rtl" : "ltr";
+
+    // Set the dir attribute on the <html> element
+    document.documentElement.dir = direction;
+
+    // Optional: You could also add/remove a class to the body for CSS targeting
+    // document.body.classList.remove('ltr', 'rtl');
+    // document.body.classList.add(direction);
+  }, [i18n.language]); // Re-run this effect whenever the language changes
+
+  // No need for t function directly in App if titles are handled in pages/layout
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-gray-100">
-        <Nav />
-        <div className="flex-grow p-4 sm:p-6">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <div className="flex flex-col items-center justify-center h-full">
-                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 w-full max-w-md">
-                    <h1 className="text-3xl font-bold text-blue-700 mb-6">
-                      {t("Timer")} {/* Use t('Timer') here as well */}
-                    </h1>
-                    <Timer />
-                  </div>
-                </div>
-              }
-            />
-            <Route
-              path="/chart"
-              element={
-                <div className="flex flex-col items-center justify-center h-full">
-                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200 w-full max-w-md">
-                    <h1 className="text-3xl font-bold text-blue-700 mb-6">
-                      {t("Pie Chart")} {/* Use t('Pie Chart') here as well */}
-                    </h1>
-                    <ChartPage />
-                  </div>
-                </div>
-              }
-            />
-          </Routes>
-        </div>
-      </div>
+      <Layout>
+        {" "}
+        {/* Wrap all routes in the Layout component */}
+        <Routes>
+          <Route path="/" element={<TimerPage />} />
+          <Route path="/chart" element={<ChartPage />} />
+          {/* Add other routes here */}
+          {/* Example of a 404 page */}
+          {/* <Route path="*" element={<NotFoundPage />} /> */}
+        </Routes>
+      </Layout>
     </Router>
   );
 }
