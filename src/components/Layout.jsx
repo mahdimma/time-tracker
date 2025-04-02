@@ -7,7 +7,7 @@ function Layout({ children }) {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="font-vazir flex flex-col min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       <Nav />
 
       {/* Main Content Area */}
