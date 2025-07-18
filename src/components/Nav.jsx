@@ -130,7 +130,17 @@ function Nav() {
             >
               {t("Charts")}
             </NavLink>
-            {/* Add more mobile navigation links here if needed */}
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `${mobileLinkClasses} ${
+                  isActive ? mobileActiveLinkClasses : ""
+                }`
+              }
+              onClick={toggleMobileMenu} // Close menu on click
+            >
+              {t("home")}
+            </NavLink>
 
             {/* Language Switcher in Mobile Menu */}
             <div className="mt-3 pt-3 border-t border-gray-200 px-2">

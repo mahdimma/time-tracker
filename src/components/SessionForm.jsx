@@ -84,7 +84,21 @@ function SessionForm({
             type="color"
             value={sessionColor}
             onChange={(e) => setSessionColor(e.target.value)}
-            className="w-10 h-10 border-none rounded-md cursor-pointer" // Basic styling for the picker itself
+            className="w-10 h-10 border-none rounded-md cursor-pointer"
+          />
+          <input
+            type="text"
+            value={sessionColor}
+            onChange={(e) => {
+              // Validate hex color
+              if (/^#[0-9A-Fa-f]{6}$/.test(e.target.value)) {
+                setSessionColor(e.target.value);
+              }
+            }}
+            maxLength={7}
+            pattern="^#[0-9A-Fa-f]{6}$"
+            className="w-20 px-2 py-1 text-sm border border-gray-300 rounded"
+            placeholder="#FFFFFF"
           />
           <span
             className="inline-block w-6 h-6 rounded ml-2 border"
@@ -102,16 +116,5 @@ function SessionForm({
     </form>
   );
 }
-
-// Helper for simple fade-in animation (add to your global CSS or Tailwind config)
-/* In your global CSS (e.g., index.css):
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
-}
-*/
 
 export default SessionForm;

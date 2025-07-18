@@ -28,5 +28,12 @@
   "24-Hour Activity Chart": "24-Hour Activity Chart",
   "No session information available.": "No session information available.",
   "00:00 - 12:00": "00:00 - 12:00",
-  "12:00 - 24:00": "12:00 - 24:00"
+  "12:00 - 24:00": "12:00 - 24:00",
+  "home": "Home",
+  "legend": "Legend",
+  "chart_24hr_title": "24-Hour Activity Cycle",
+  "chart_am_title": "AM (00:00 - 12:00)",
+  "chart_pm_title": "PM (12:00 - 24:00)",
+  "page_not_found": "Page not found.",
+  "Select color": "Select color"
 }

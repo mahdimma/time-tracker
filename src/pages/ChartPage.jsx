@@ -180,7 +180,7 @@ const ChartLegend = ({ activities }) => {
   return (
     <div className="mt-6">
       <h3 className="text-md font-semibold mb-2 text-gray-600">
-        {t("Legend")}
+        {t("legend")}
       </h3>
       <ul className="space-y-1">
         {activities.map((activity, index) => (
@@ -372,7 +372,7 @@ function ChartPage() {
           {/* 24-Hour Chart */}
           <div className="mb-10 border-b pb-8 border-gray-200">
             <ActivityPieChart
-              title="24-Hour Activity Cycle"
+              title={t("chart_24hr_title")}
               sessions={allSessions}
               radius={chartRadius + 10} // Slightly larger radius for the main chart
               centerX={centerX}
@@ -387,7 +387,7 @@ function ChartPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* First Half Chart */}
             <ActivityPieChart
-              title="AM (00:00 - 12:00)"
+              title={t("chart_am_title")}
               sessions={firstHalfSessions}
               radius={chartRadius}
               centerX={centerX}
@@ -399,7 +399,7 @@ function ChartPage() {
 
             {/* Second Half Chart */}
             <ActivityPieChart
-              title="PM (12:00 - 24:00)"
+              title={t("chart_pm_title")}
               sessions={secondHalfSessions}
               radius={chartRadius}
               centerX={centerX}

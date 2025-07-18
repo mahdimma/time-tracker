@@ -4,9 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import TimerPage from "./pages/TimerPage"; // Renamed for clarity
 import ChartPage from "./pages/ChartPage"; // Renamed for clarity
+import NotFoundPage from "./pages/NotFoundPage";
 import Layout from "./components/Layout";
-// Removed Nav import, as it's in Layout
-// Removed useTranslation, as it's not directly needed here anymore
 
 function App() {
   const { i18n } = useTranslation();
@@ -18,9 +17,9 @@ function App() {
     // Set the dir attribute on the <html> element
     document.documentElement.dir = direction;
 
-    // Optional: You could also add/remove a class to the body for CSS targeting
-    // document.body.classList.remove('ltr', 'rtl');
-    // document.body.classList.add(direction);
+    // Add/remove RTL/LTR class to body for CSS targeting
+    document.body.classList.remove('ltr', 'rtl');
+    document.body.classList.add(direction);
   }, [i18n.language]); // Re-run this effect whenever the language changes
 
   // No need for t function directly in App if titles are handled in pages/layout
@@ -33,9 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TimerPage />} />
           <Route path="/chart" element={<ChartPage />} />
-          {/* Add other routes here */}
-          {/* Example of a 404 page */}
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </Router>
