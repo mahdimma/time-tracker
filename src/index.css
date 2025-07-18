@@ -37,7 +37,8 @@
     display: block !important;
   }
   
-  nav > div:first-child > div {
+  /* Hide desktop navigation items only, not the mobile menu button */
+  nav .hidden.sm\\:ml-6 {
     display: none !important;
   }
 }

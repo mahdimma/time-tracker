@@ -23,10 +23,15 @@
   "Past Sessions": "Past Sessions",
   "Clear All Sessions": "Clear All Sessions",
   "No sessions recorded yet.": "No sessions recorded yet.",
+  "No sessions recorded yet. Start the timer to log your activities!": "No sessions recorded yet. Start the timer to log your activities!",
   "min": "min",
   "Delete": "Delete",
+  "Delete session": "Delete session",
   "24-Hour Activity Chart": "24-Hour Activity Chart",
   "No session information available.": "No session information available.",
+  "No session information available to display charts.": "No session information available to display charts.",
+  "No activity data to display.": "No activity data to display.",
+  "Activity Overview": "Activity Overview",
   "00:00 - 12:00": "00:00 - 12:00",
   "12:00 - 24:00": "12:00 - 24:00",
   "home": "Home",
@@ -35,5 +40,9 @@
   "chart_am_title": "AM (00:00 - 12:00)",
   "chart_pm_title": "PM (12:00 - 24:00)",
   "page_not_found": "Page not found.",
-  "Select color": "Select color"
+  "Select color": "Select color",
+  "e.g., Project X research": "e.g., Project X research",
+  "Unnamed Session": "Unnamed Session",
+  "Are you sure you want to delete this session?": "Are you sure you want to delete this session?",
+  "Are you sure you want to delete ALL sessions? This cannot be undone.": "Are you sure you want to delete ALL sessions? This cannot be undone."
 }
